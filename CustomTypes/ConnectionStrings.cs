@@ -1,7 +1,7 @@
 namespace API.CustomTypes
 {
-    public struct ConnectionStrings
-    {
-        public string? IoTHub { get; set; }
-    }
+	public struct ConnectionStrings
+	{
+		public string? IoTHub { get; set; }
+	}
 }
