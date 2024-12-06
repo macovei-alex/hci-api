@@ -38,15 +38,15 @@ namespace API.Controllers
 				TextMessage = textMessageResponse
 			};
 
-			// string? ioTHubConnectionString = _secretsService.ConnectionStrings?.IoTHub;
-			// if (ioTHubConnectionString != null)
-			// {
-			//     var serviceClientForIoTHub = ServiceClient.CreateFromConnectionString(ioTHubConnectionString);
-			//     var seralizedMessage = JsonConvert.SerializeObject(textMessageResponse);
+			string? ioTHubConnectionString = _secretsService.ConnectionStrings?.IoTHub;
+			if (ioTHubConnectionString != null)
+			{
+				var serviceClientForIoTHub = ServiceClient.CreateFromConnectionString(ioTHubConnectionString);
+				var serializedMessage = JsonConvert.SerializeObject(textMessageResponse);
 
-			//     var ioTMessage = new Message(Encoding.UTF8.GetBytes(seralizedMessage));
-			//     await serviceClientForIoTHub.SendAsync(_appConfigurationService.IoTDeviceName, ioTMessage);
-			// }
+				var ioTMessage = new Message(Encoding.UTF8.GetBytes(serializedMessage));
+				await serviceClientForIoTHub.SendAsync(_appConfigurationService.IoTDeviceName, ioTMessage);
+			}
 
 			return Ok(response);
 		}
